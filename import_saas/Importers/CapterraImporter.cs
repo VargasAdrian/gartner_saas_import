@@ -47,5 +47,7 @@ public class CapterraImporter : IImporter
             else
                 _dbService.UpdateProduct(p);
         });
+
+        _logger.LogInformation("Finished importing Capterra");
     }
 }
