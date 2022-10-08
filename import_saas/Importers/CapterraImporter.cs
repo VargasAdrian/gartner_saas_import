@@ -1,4 +1,6 @@
 using AutoMapper;
+using import_saas.Models.Db.MySql;
+using import_saas.Models.Dto;
 using import_saas.Services;
 using Microsoft.Extensions.Logging;
 
@@ -23,6 +25,27 @@ public class CapterraImporter : IImporter
 
     public void Execute()
     {
-        throw new NotImplementedException();
+        _logger.LogInformation("Starting Capterra import");
+
+        var yaml = File.ReadAllText("capterra.yaml");
+        
+        var deserializer = new YamlDotNet.Serialization.Deserializer();
+        var capterraProducts = deserializer.Deserialize<List<Capterra>>(yaml);
+
+        if(capterraProducts is null || capterraProducts.Count == 0)
+        {
+            _logger.LogWarning("No products from Capterra to import");
+            return;
+        }
+
+        var products = _mapper.Map<List<Capterra>, List<Product>>(capterraProducts);
+
+        products.ForEach(p => 
+        {
+            if(_dbService.GetProduct(p.name) is null)
+                _dbService.CreateProduct(p);
+            else
+                _dbService.UpdateProduct(p);
+        });
     }
 }
