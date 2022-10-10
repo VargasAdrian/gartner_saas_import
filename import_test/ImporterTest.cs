@@ -47,7 +47,24 @@ public class ImporterTest
         dbServiceMock.Verify(db => db.CreateProduct(It.IsAny<Product>()), Times.Exactly(2));
     }
 
+    [Fact]
+    public void CapterraFileNotFoundException()
+    {
+        var mapper = MapperTest.InitMapper();
 
+        var filePath = "/feed-products/not_exists.yaml";
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(fs => fs.Capterra)
+            .Returns(AppContext.BaseDirectory + filePath);
+
+        var dbServiceMock = new Mock<IDbService>();
+
+        var importer = new CapterraImporter(mapper, dbServiceMock.Object, fileServiceMock.Object);
+
+        Action action = () => importer.Execute();
+
+        Assert.Throws<FileNotFoundException>(action);
+    }
 
     [Fact]
     public void SoftwareAdviceInvalid()
