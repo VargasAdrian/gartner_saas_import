@@ -25,6 +25,27 @@ public class ImporterTest
 
         importer.Execute();
 
+        dbServiceMock.Verify(db => db.GetProduct(It.IsAny<string>()), Times.Exactly(3));
         dbServiceMock.Verify(db => db.CreateProduct(It.IsAny<Product>()), Times.Exactly(3));
+    }
+
+    [Fact]
+    public void ImportSoftwareAdvice()
+    {
+        var mapper = MapperTest.InitMapper();
+
+        var filePath = "/feed-products/softwareadvice.json";
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(fs => fs.SoftwareAdvice)
+            .Returns(AppContext.BaseDirectory + filePath);
+
+        var dbServiceMock = new Mock<IDbService>();
+
+        var importer = new SoftwareAdviceImporter(mapper, dbServiceMock.Object, fileServiceMock.Object);
+
+        importer.Execute();
+
+        dbServiceMock.Verify(db => db.GetProduct(It.IsAny<string>()), Times.Exactly(2));
+        dbServiceMock.Verify(db => db.CreateProduct(It.IsAny<Product>()), Times.Exactly(2));
     }
 }
