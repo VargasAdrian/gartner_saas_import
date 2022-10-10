@@ -3,7 +3,9 @@ Make sure you have the .NET 6 SDK installed. Download it in the following link: 
 
 # Running the code
 ## Import script
-Open the terminal in ./import_saas folder and execute "dotnet run"
+**Before executing the script** make sure the appsettings is set up correctly. Make sure the Capterra and SoftwareAdvice attributes target the desired file path.
+
+Once the appsettings file is set up, open the terminal in ./import_saas folder and execute "dotnet run"
 
 ## Unit tests
 Open the terminal in ./import_test folder and execute "dotnet test"
