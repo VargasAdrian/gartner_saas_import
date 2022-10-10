@@ -34,6 +34,14 @@ public class CapterraImporter : IImporter
             throw new Exception("File does not have values");
         }
 
+        var errorIndex = ValidateDto(capterraProducts);
+        if(errorIndex.Count > 0)
+        {
+            var indeces = errorIndex.Aggregate("", (res, curr) => $"{res}, {curr}").Substring(2);
+
+            throw new Exception($"Invalid format in following product indeces: {indeces}");
+        }
+
         var products = _mapper.Map<List<Capterra>, List<Product>>(capterraProducts);
 
         products.ForEach(p =>
@@ -43,5 +51,20 @@ public class CapterraImporter : IImporter
             else
                 _dbService.UpdateProduct(p);
         });
+    }
+
+    private List<int> ValidateDto(List<Capterra> products)
+    {
+        var res = new List<int>();
+
+        for(int i = 0; i < products.Count; i++)
+        {
+            if(string.IsNullOrEmpty(products[i].name) || string.IsNullOrEmpty(products[i].tags))
+            {
+                res.Add(i + 1);
+            }
+        }
+
+        return res;
     }
 }
