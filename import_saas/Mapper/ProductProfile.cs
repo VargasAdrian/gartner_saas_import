@@ -20,6 +20,7 @@ public class ProductProfile : Profile
 
         CreateMap<SoftwareAdviceProduct, Product>()
             .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.title))
+            .ForMember(dest => dest.twitter, opt => opt.AddTransform(val => val == null ? null : val.Replace("@", "")))
             .ForMember(dest => dest.categories, opt => {
                 opt.MapFrom(src => src.categories
                     .Select(c => new Category(c))

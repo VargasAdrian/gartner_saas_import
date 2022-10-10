@@ -60,7 +60,7 @@ public class MapperTest
                 new SoftwareAdviceProduct
                 {
                     title = "b_title1",
-                    twitter = "b_twitter",
+                    twitter = "@b_twitter",
                     categories = new List<string>(){"b_cat1", "b_cat2"}
                 },
             }
