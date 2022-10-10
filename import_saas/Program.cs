@@ -18,6 +18,8 @@ try
 {
     Console.WriteLine("Starting App");
     services.GetRequiredService<App>().Run(args);
+
+    host.StopAsync();
 }
 catch(Exception e)
 {

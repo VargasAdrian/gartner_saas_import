@@ -47,7 +47,5 @@ public class App
                 _logger.LogError($"Unexpected error for importer: {importer.Name} - {e.Message}");
             }
         }
-
-        Console.ReadLine();
     }
 }
