@@ -6,9 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Category
 {
     [Key]
-    public int id { get; set; }
+    public int? id { get; set; }
 
     [ForeignKey(nameof(Product))]
-    public int product_id { get; set; }
+    public int? product_id { get; set; }
     public string name { get; set; }
+
+    public Category(string name)
+    {
+        this.name = name;
+    }
 }
