@@ -72,5 +72,7 @@ public class MapperTest
         Assert.Null(products.First().twitter);
         Assert.True("a_title1".Equals(products.First().name));
         Assert.True("b_twitter".Equals(products[1].twitter));
+
+        
     }
 }

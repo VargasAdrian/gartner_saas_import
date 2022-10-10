@@ -18,7 +18,9 @@ public class FileService : IFileService
 
     public FileService(IConfiguration config)
     {
-        _SoftwareAdvice = config.GetSection("FileSources")["SoftwareAdvice"];
-        _Capterra = config.GetSection("FileSources")["Capterra"];
+        var sources = "FileSources";
+        
+        _SoftwareAdvice = config.GetSection(sources)["SoftwareAdvice"];
+        _Capterra = config.GetSection(sources)["Capterra"];
     }
 }

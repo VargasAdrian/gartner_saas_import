@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace import_saas.Models.Dto;
 
 public class SoftwareAdvice

@@ -2,8 +2,6 @@ using AutoMapper;
 using import_saas.Models.Db.MySql;
 using import_saas.Models.Dto;
 using import_saas.Services;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace import_saas.Importers;
@@ -29,9 +27,9 @@ public class SoftwareAdviceImporter : IImporter
 
     public void Execute()
     {
-        var json = File.ReadAllText("softwareadvice.json");
+        var text = File.ReadAllText(_fileService.SoftwareAdvice);
 
-        var softwareAdviceWrapper = JsonConvert.DeserializeObject<SoftwareAdvice>(json);
+        var softwareAdviceWrapper = JsonConvert.DeserializeObject<SoftwareAdvice>(text);
 
         if (softwareAdviceWrapper is null || softwareAdviceWrapper.products is null || softwareAdviceWrapper.products.Count == 0)
         {
