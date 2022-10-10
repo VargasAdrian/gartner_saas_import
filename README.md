@@ -1,9 +1,9 @@
 # Installation
-Make sure you have the .NET 6 SDK installed. Download it in the following link: [https://dotnet.microsoft.com/en-us/download/dotnet/6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+Make sure you have the .NET 6 SDK installed and dotnet as a path variable in your system. Download it in the following link: [https://dotnet.microsoft.com/en-us/download/dotnet/6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 # Running the code
 ## Import script
-**Before executing the script** make sure the appsettings is set up correctly. Make sure the Capterra and SoftwareAdvice attributes target the desired file path.
+Before executing the script make sure the appsettings is set up correctly. Make sure the Capterra and SoftwareAdvice attributes target the desired file path.
 
 Once the appsettings file is set up, open the terminal in ./import_saas folder and execute "dotnet run"
 
