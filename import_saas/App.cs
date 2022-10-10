@@ -38,11 +38,11 @@ public class App
             }
             catch(FileNotFoundException e)
             {
-
+                _logger.LogError($"File not found for importer: {importer.Name}");
             }
             catch(Exception e)
             {
-
+                _logger.LogError($"Unexpected error for importer: {importer.Name} - {e.Message}");
             }
         }
     }

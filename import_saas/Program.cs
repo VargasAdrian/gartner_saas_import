@@ -6,13 +6,17 @@ using AutoMapper;
 using import_saas.Mapper;
 using import_saas;
 
+Console.WriteLine("Initializing Program");
+
 using IHost host = CreateHostBuilder(args).Build(); 
+
 using var scope = host.Services.CreateScope();
 
 var services = scope.ServiceProvider;
 
 try 
 {
+    Console.WriteLine("Starting App");
     services.GetRequiredService<App>().Run(args);
 }
 catch(Exception e)
