@@ -7,7 +7,7 @@ namespace import_test;
 
 public class MapperTest
 {
-    private IMapper InitMapper()
+    internal static IMapper InitMapper()
     {
         return new MapperConfiguration(opt =>
         {
