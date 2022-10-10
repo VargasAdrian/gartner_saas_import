@@ -22,8 +22,8 @@ public class App
     {
         var importers = new List<IImporter>()
         {
-            new CapterraImporter(_mapper, _dbService, _logger),
-            new SoftwareAdviceImporter(_mapper, _dbService, _logger),
+            new CapterraImporter(_mapper, _dbService),
+            new SoftwareAdviceImporter(_mapper, _dbService),
         };
 
         foreach (var importer in importers)
@@ -38,7 +38,7 @@ public class App
             }
             catch(FileNotFoundException e)
             {
-                
+
             }
             catch(Exception e)
             {

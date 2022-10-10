@@ -11,32 +11,26 @@ public class SoftwareAdviceImporter : IImporter
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
-    private readonly ILogger<SoftwareAdviceImporter> _logger;
 
     public SoftwareAdviceImporter(
         IMapper mapper,
-        IDbService dbService,
-        ILogger<SoftwareAdviceImporter> logger
+        IDbService dbService
     )
     {
         _mapper = mapper;
         _dbService = dbService;
-        _logger = logger;
     }
 
     public string Name => "Software Advice";
 
     public void Execute()
     {
-        _logger.LogInformation("Starting SoftwareAdvice import");
-
         var json = File.ReadAllText("softwareadvice.json");
 
         var softwareAdviceProducts = JsonConvert.DeserializeObject<List<SoftwareAdvice>>(json);
 
         if (softwareAdviceProducts is null || softwareAdviceProducts.Count == 0)
         {
-            _logger.LogWarning("No products from Capterra to import");
             return;
         }
 
@@ -49,7 +43,5 @@ public class SoftwareAdviceImporter : IImporter
             else
                 _dbService.UpdateProduct(p);
         });
-
-        _logger.LogInformation("Finished importing SoftwareAdvice");
     }
 }

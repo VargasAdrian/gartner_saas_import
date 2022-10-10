@@ -10,25 +10,20 @@ public class CapterraImporter : IImporter
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
-    private readonly ILogger<SoftwareAdviceImporter> _logger;
 
     public CapterraImporter(
         IMapper mapper,
-        IDbService dbService,
-        ILogger<SoftwareAdviceImporter> logger
+        IDbService dbService
     )
     {
         _mapper = mapper;
         _dbService = dbService;
-        _logger = logger;
     }
 
     public string Name => "Capterra";
 
     public void Execute()
     {
-        _logger.LogInformation("Starting Capterra import");
-
         var yaml = File.ReadAllText("capterra.yaml");
         
         var deserializer = new YamlDotNet.Serialization.Deserializer();
@@ -36,7 +31,6 @@ public class CapterraImporter : IImporter
 
         if(capterraProducts is null || capterraProducts.Count == 0)
         {
-            _logger.LogWarning("No products from Capterra to import");
             return;
         }
 
@@ -49,7 +43,5 @@ public class CapterraImporter : IImporter
             else
                 _dbService.UpdateProduct(p);
         });
-
-        _logger.LogInformation("Finished importing Capterra");
     }
 }
