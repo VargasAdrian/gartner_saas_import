@@ -2,6 +2,7 @@ using AutoMapper;
 using import_saas.Models.Db.MySql;
 using import_saas.Models.Dto;
 using import_saas.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -11,14 +12,17 @@ public class SoftwareAdviceImporter : IImporter
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
+    private readonly IConfiguration _config;
 
     public SoftwareAdviceImporter(
         IMapper mapper,
-        IDbService dbService
+        IDbService dbService,
+        IConfiguration config
     )
     {
         _mapper = mapper;
         _dbService = dbService;
+        _config = config;
     }
 
     public string Name => "Software Advice";

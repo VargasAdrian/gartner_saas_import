@@ -1,6 +1,7 @@
 using AutoMapper;
 using import_saas.Importers;
 using import_saas.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace import_saas;
@@ -9,12 +10,14 @@ public class App
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
+    private readonly IConfiguration _config;
     private readonly ILogger<App> _logger;
 
-    public App(IMapper mapper, IDbService dbService, ILogger<App> logger)
+    public App(IMapper mapper, IDbService dbService, IConfiguration config, ILogger<App> logger)
     {
         _mapper = mapper;
         _dbService = dbService;
+        _config = config;
         _logger = logger;
     }
 
@@ -22,8 +25,8 @@ public class App
     {
         var importers = new List<IImporter>()
         {
-            new CapterraImporter(_mapper, _dbService),
-            new SoftwareAdviceImporter(_mapper, _dbService),
+            new CapterraImporter(_mapper, _dbService, _config),
+            new SoftwareAdviceImporter(_mapper, _dbService, _config),
         };
 
         foreach (var importer in importers)
