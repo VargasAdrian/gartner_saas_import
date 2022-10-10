@@ -11,8 +11,6 @@ Once the appsettings file is set up, open the terminal in ./import_saas folder a
 Open the terminal in ./import_test folder and execute "dotnet test"
 
 # Summary
-The code can be found here: [https://github.com/VargasAdrian/gartner_saas_import](https://github.com/VargasAdrian/gartner_saas_import)
-
 For the coding assesment I chose to work with tools I am already familiar with. The script is a .NET 6 console app and the unit testing framework used is XUnit.
 
 The 3rd party libraries used are:
