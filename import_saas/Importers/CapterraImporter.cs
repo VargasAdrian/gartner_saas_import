@@ -25,20 +25,20 @@ public class CapterraImporter : IImporter
     public void Execute()
     {
         var yaml = File.ReadAllText("capterra.yaml");
-        
+
         var deserializer = new YamlDotNet.Serialization.Deserializer();
         var capterraProducts = deserializer.Deserialize<List<Capterra>>(yaml);
 
-        if(capterraProducts is null || capterraProducts.Count == 0)
+        if (capterraProducts is null || capterraProducts.Count == 0)
         {
-            return;
+            throw new Exception("File does not have values");
         }
 
         var products = _mapper.Map<List<Capterra>, List<Product>>(capterraProducts);
 
-        products.ForEach(p => 
+        products.ForEach(p =>
         {
-            if(_dbService.GetProduct(p.name) is null)
+            if (_dbService.GetProduct(p.name) is null)
                 _dbService.CreateProduct(p);
             else
                 _dbService.UpdateProduct(p);

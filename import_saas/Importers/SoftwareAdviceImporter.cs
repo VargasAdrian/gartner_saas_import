@@ -31,7 +31,7 @@ public class SoftwareAdviceImporter : IImporter
 
         if (softwareAdviceProducts is null || softwareAdviceProducts.Count == 0)
         {
-            return;
+            throw new Exception("File does not have values");
         }
 
         var products = _mapper.Map<List<SoftwareAdvice>, List<Product>>(softwareAdviceProducts);
