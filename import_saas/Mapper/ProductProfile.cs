@@ -18,7 +18,7 @@ public class ProductProfile : Profile
                 );
             });
 
-        CreateMap<SoftwareAdvice, Product>()
+        CreateMap<SoftwareAdviceProduct, Product>()
             .ForMember(dest => dest.name, opt => opt.MapFrom(src => src.title))
             .ForMember(dest => dest.categories, opt => {
                 opt.MapFrom(src => src.categories
