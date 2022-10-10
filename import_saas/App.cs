@@ -1,7 +1,6 @@
 using AutoMapper;
 using import_saas.Importers;
 using import_saas.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace import_saas;
@@ -48,5 +47,7 @@ public class App
                 _logger.LogError($"Unexpected error for importer: {importer.Name} - {e.Message}");
             }
         }
+
+        Console.ReadLine();
     }
 }
