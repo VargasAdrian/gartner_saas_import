@@ -24,6 +24,8 @@ public class SoftwareAdviceImporter : IImporter
         _logger = logger;
     }
 
+    public string Name => "Software Advice";
+
     public void Execute()
     {
         _logger.LogInformation("Starting SoftwareAdvice import");

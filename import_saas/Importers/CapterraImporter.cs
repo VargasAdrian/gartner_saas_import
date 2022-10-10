@@ -23,6 +23,8 @@ public class CapterraImporter : IImporter
         _logger = logger;
     }
 
+    public string Name => "Capterra";
+
     public void Execute()
     {
         _logger.LogInformation("Starting Capterra import");
