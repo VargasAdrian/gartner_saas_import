@@ -67,6 +67,27 @@ public class ImporterTest
     }
 
     [Fact]
+    public void CapterraEmpty()
+    {
+        var mapper = MapperTest.InitMapper();
+
+        var filePath = "/feed-products/capterra_empty.yaml";
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(fs => fs.Capterra)
+            .Returns(AppContext.BaseDirectory + filePath);
+
+        var dbServiceMock = new Mock<IDbService>();
+
+        var importer = new CapterraImporter(mapper, dbServiceMock.Object, fileServiceMock.Object);
+
+        Action action = () => importer.Execute();
+
+        Exception e = Assert.Throws<Exception>(action);
+
+        Assert.True("File does not have values".Equals(e.Message));
+    }
+
+    [Fact]
     public void SoftwareAdviceInvalid()
     {
         var mapper = MapperTest.InitMapper();
@@ -84,6 +105,6 @@ public class ImporterTest
 
         Exception e = Assert.Throws<Exception>(action);
 
-        Assert.True(e.Message.Equals("Invalid format in following product indeces: 1, 2"));
+        Assert.True("Invalid format in following product indeces: 1, 2".Equals(e.Message));
     }
 }
