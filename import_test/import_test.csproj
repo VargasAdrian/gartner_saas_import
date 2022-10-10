@@ -25,4 +25,10 @@
     <ProjectReference Include="..\import_saas\import_saas.csproj" />
   </ItemGroup>
 
+  <ItemGroup> 
+    <Content Include="feed-products\**"> 
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+    </Content> 
+  </ItemGroup>
+
 </Project>
