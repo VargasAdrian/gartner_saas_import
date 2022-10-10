@@ -5,7 +5,6 @@ namespace import_test;
 
 public class FileTest
 {
-
     [Fact]
     public void ReadCapterra()
     {
@@ -15,11 +14,9 @@ public class FileTest
         var deserializer = new YamlDotNet.Serialization.Deserializer();
         var capterraProducts = deserializer.Deserialize<List<Capterra>>(text);
 
-        Console.Write(capterraProducts.First().name);
-
         Assert.True("GitGHub".Equals(capterraProducts.First().name));
         Assert.True("jira".Equals(capterraProducts[2].twitter));
-        Assert.Equal<int>(3, capterraProducts.Count);
+        Assert.Equal<int>(3, capterraProducts.Count); 
     }
 
     [Fact]
