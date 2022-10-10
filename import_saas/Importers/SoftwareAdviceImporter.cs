@@ -12,17 +12,17 @@ public class SoftwareAdviceImporter : IImporter
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
-    private readonly IConfiguration _config;
+    private readonly IFileService _fileService;
 
     public SoftwareAdviceImporter(
         IMapper mapper,
         IDbService dbService,
-        IConfiguration config
+        IFileService fileService
     )
     {
         _mapper = mapper;
         _dbService = dbService;
-        _config = config;
+        _fileService = fileService;
     }
 
     public string Name => "Software Advice";

@@ -10,14 +10,14 @@ public class App
 {
     private readonly IMapper _mapper;
     private readonly IDbService _dbService;
-    private readonly IConfiguration _config;
+    private readonly IFileService _fileService;
     private readonly ILogger<App> _logger;
 
-    public App(IMapper mapper, IDbService dbService, IConfiguration config, ILogger<App> logger)
+    public App(IMapper mapper, IDbService dbService, IFileService fileService, ILogger<App> logger)
     {
         _mapper = mapper;
         _dbService = dbService;
-        _config = config;
+        _fileService = fileService;
         _logger = logger;
     }
 
@@ -25,8 +25,8 @@ public class App
     {
         var importers = new List<IImporter>()
         {
-            new CapterraImporter(_mapper, _dbService, _config),
-            new SoftwareAdviceImporter(_mapper, _dbService, _config),
+            new CapterraImporter(_mapper, _dbService, _fileService),
+            new SoftwareAdviceImporter(_mapper, _dbService, _fileService),
         };
 
         foreach (var importer in importers)

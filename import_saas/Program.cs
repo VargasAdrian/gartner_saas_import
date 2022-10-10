@@ -35,6 +35,7 @@ static IHostBuilder CreateHostBuilder(string[] args)
 
             services.AddSingleton(mapper);
             services.AddSingleton<IDbService, DbServices>();
+            services.AddSingleton<IFileService, FileService>();
             services.AddSingleton<App>();
         });
 }
