@@ -1,5 +1,5 @@
 # Installation
-Make sure you have the .NET 6 SDK installed. Download it clicking [here](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
+Make sure you have the .NET 6 SDK installed. Download it in the following link: [https://dotnet.microsoft.com/en-us/download/dotnet/6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
 # Running the code
 ## Import script
