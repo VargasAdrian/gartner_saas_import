@@ -1,9 +1,7 @@
 using import_saas.Importers;
 using import_saas.Models.Db.MySql;
-using import_saas.Models.Dto;
 using import_saas.Services;
 using Moq;
-using Newtonsoft.Json;
 
 namespace import_test;
 
@@ -47,5 +45,28 @@ public class ImporterTest
 
         dbServiceMock.Verify(db => db.GetProduct(It.IsAny<string>()), Times.Exactly(2));
         dbServiceMock.Verify(db => db.CreateProduct(It.IsAny<Product>()), Times.Exactly(2));
+    }
+
+
+
+    [Fact]
+    public void SoftwareAdviceInvalid()
+    {
+        var mapper = MapperTest.InitMapper();
+
+        var filePath = "/feed-products/softwareadvice_invalid.json";
+        var fileServiceMock = new Mock<IFileService>();
+        fileServiceMock.Setup(fs => fs.SoftwareAdvice)
+            .Returns(AppContext.BaseDirectory + filePath);
+
+        var dbServiceMock = new Mock<IDbService>();
+
+        var importer = new SoftwareAdviceImporter(mapper, dbServiceMock.Object, fileServiceMock.Object);
+
+        Action action = () => importer.Execute();
+
+        Exception e = Assert.Throws<Exception>(action);
+
+        Assert.True(e.Message.Equals("Invalid format in following product indeces: 1, 2"));
     }
 }

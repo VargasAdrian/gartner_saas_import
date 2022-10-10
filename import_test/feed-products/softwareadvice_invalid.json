@@ -1,0 +1,14 @@
+{
+    "products": [
+        {
+            "twitter": "@freshdesk",
+            "title": "Freshdesk"
+        },
+        {
+            "categories": [
+                "CRM",
+                "Sales Management"
+            ]
+        }
+    ]
+}
