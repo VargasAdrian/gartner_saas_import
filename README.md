@@ -1,14 +1,16 @@
 # Installation
 Make sure you have the .NET 6 SDK installed and dotnet as a path variable in your system. Download it in the following link: [https://dotnet.microsoft.com/en-us/download/dotnet/6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 
+The first step is to install the package dependencies in both projects by opening the terminal in ./import_test and running: **dotnet restore**
+
 # Running the code
 ## Import script
-Before executing the script make sure the appsettings is set up correctly. Make sure the Capterra and SoftwareAdvice attributes target the desired file path.
+Before executing the script make sure the appsettings is set up correctly. Make sure the Capterra and SoftwareAdvice attributes target the desired file path. Both files are located in: ./feed-products
 
-Once the appsettings file is set up, open the terminal in ./import_saas folder and execute "dotnet run"
+Once the appsettings file is set up, open the terminal in ./import_saas folder and execute **dotnet run**
 
 ## Unit tests
-Open the terminal in ./import_test folder and execute "dotnet test"
+Open the terminal in ./import_test folder and execute **dotnet test**
 
 # Summary
 For the coding assesment I chose to work with tools I am already familiar with. The script is a .NET 6 console app and the unit testing framework used is XUnit.
