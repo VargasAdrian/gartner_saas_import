@@ -38,7 +38,7 @@ public class App
 
                 _logger.LogInformation($"Completed importer: {importer.Name}");
             }
-            catch(FileNotFoundException e)
+            catch(FileNotFoundException)
             {
                 _logger.LogError($"File not found for importer: {importer.Name}");
             }

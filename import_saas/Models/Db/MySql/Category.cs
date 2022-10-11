@@ -10,7 +10,7 @@ public class Category
 
     [ForeignKey(nameof(Product))]
     public int? product_id { get; set; }
-    public string name { get; set; }
+    public string name { get; set; } = "";
 
     public Category(string name)
     {
